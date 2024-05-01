@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -21,7 +22,12 @@ class PlantRecogniser extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => PlantDiseaseIdViewModel(),
-        onViewModelReady: (PlantDiseaseIdViewModel model) {
+        onViewModelReady: (PlantDiseaseIdViewModel model) async {
+          model.initTts();
+          var result = await model.flutterTts!.speak("Hello");
+          if (result == 1) {
+            log("Speaking...");
+          }
           model.loadClassifier();
         },
         builder: (context, PlantDiseaseIdViewModel model, _) {
@@ -135,19 +141,26 @@ class PlantRecogniser extends StatelessWidget {
   }
 
   Widget _buildResultView(PlantDiseaseIdViewModel model) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        // ignore: lines_longer_than_80_chars
-        if (model.resultStatus == ResultStatus.found)
-          TextWidget(
-            text: 'Disease Outcome: ${model.getTitleAndAccuracyLabel()[0]}',
-          ),
-        const SizedBox(height: 10),
-        TextWidget(text: model.getTitleAndAccuracyLabel()[1]),
-      ],
-    );
+    return FutureBuilder<List<String>>(
+        future: model.getTitleAndAccuracyLabel(),
+        builder: (context, snapshot) {
+          if (snapshot.data == null) {
+            return const TextWidget(text: "Awaiting data...");
+          }
+          return Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              // ignore: lines_longer_than_80_chars
+              if (model.resultStatus == ResultStatus.found)
+                TextWidget(
+                  text: 'Disease Outcome: ${snapshot.data![0]}',
+                ),
+              const SizedBox(height: 10),
+              TextWidget(text: snapshot.data![1]),
+            ],
+          );
+        });
   }
 }
