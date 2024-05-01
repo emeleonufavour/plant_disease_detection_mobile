@@ -51,6 +51,11 @@ class PlantDiseaseIdViewModel extends BaseViewModel {
   double get accuracy => _accuracy;
   ResultStatus get resultStatus => _resultStatus;
 
+  updateSayResult(bool value) {
+    sayResult = value;
+    notifyListeners();
+  }
+
   set isAnalyzing(bool value) {
     _isAnalyzing = value;
     notifyListeners();
@@ -208,10 +213,21 @@ class PlantDiseaseIdViewModel extends BaseViewModel {
     _resultStatus = result;
     _plantLabel = plantLabel;
     _accuracy = accuracy;
+
+    if (_resultStatus == ResultStatus.notFound) {
+      sayResultFn("I was not able to identify the plant");
+    } else if (_resultStatus == ResultStatus.found) {
+      if (sayResult) {
+        sayResultFn("""
+         The identified disease is $plantLabel. It was identified with an accuracy of ${(_accuracy * 100).toStringAsFixed(2)}%
+""");
+      }
+    }
     notifyListeners();
   }
 
   void onPickPhoto(ImageSource source) async {
+    updateSayResult(true);
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile == null) {
@@ -240,11 +256,6 @@ class PlantDiseaseIdViewModel extends BaseViewModel {
     var accuracyLabel = '';
     if (_resultStatus == ResultStatus.found) {
       accuracyLabel = 'Accuracy: ${(_accuracy * 100).toStringAsFixed(2)}%';
-      if (sayResult) {
-        sayResultFn("""
-         The identified disease is $title. It was identified with an accuracy of ${(_accuracy * 100).toStringAsFixed(2)}%
-""");
-      }
     }
     return [title, accuracyLabel];
   }
