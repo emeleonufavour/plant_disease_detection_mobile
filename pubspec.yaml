@@ -41,6 +41,7 @@ flutter:
     - assets/svg/
     - assets/labels.txt
     - assets/model_unquant.tflite
+    - assets/rive/
 
   fonts:
     - family: EuclidCircularA

@@ -8,7 +8,6 @@ import '../../style/app_assets.dart';
 import '../../widget/pd_text.dart';
 import 'home_vm.dart';
 import 'widgets/action_box.dart';
-import 'widgets/intro_box.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -56,9 +55,9 @@ class HomePage extends StatelessWidget {
                     ActionBox(
                       //onTap: () => model.snapPicture(),
                       text: 'Talk to Ella',
-                      color: Colors.yellow.withOpacity(0.1),
-                      imageAsset: AppAssets.droneSvg(context, Colors.yellow),
-                      borderColor: Colors.yellow,
+                      color: Colors.pink.withOpacity(0.1),
+                      imageAsset: AppAssets.ellaSvg(context),
+                      borderColor: Colors.pink,
                     ),
                   ],
                 ),

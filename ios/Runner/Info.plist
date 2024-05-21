@@ -41,6 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- Ask for camera permission -->
+	<key>NSCameraUsageDescription</key>
+    <string>Ella needs your camera to see the plants</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Ella needs your mic to listen to you</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

@@ -27,4 +27,6 @@ class AppAssets {
   static SvgPicture gallerySvg(context) =>
       SvgPicture.asset('assets/svg/gallery.svg',
           width: PDimensions.width(0.1, context));
+  static SvgPicture ellaSvg(context) => SvgPicture.asset('assets/svg/ella.svg',
+      width: PDimensions.width(0.1, context));
 }
