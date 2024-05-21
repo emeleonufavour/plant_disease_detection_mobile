@@ -13,4 +13,5 @@ class HomeViewModel extends BaseViewModel {
 
   // ignore: always_declare_return_types
   snapPicture() => _navService.navigateToPlantRecogniser();
+  identifyPlantWithDrone() => _navService.navigateToPhoneIdentifyView();
 }

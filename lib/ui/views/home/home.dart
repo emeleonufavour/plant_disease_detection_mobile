@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                     ),
                     ActionBox(
                       onTap: () {
-                        model.snapPicture();
+                        model.identifyPlantWithDrone();
                         HapticFeedback.lightImpact();
                       },
                       color: Colors.blue.withOpacity(0.1),
