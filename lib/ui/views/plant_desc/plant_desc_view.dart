@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:typewritertext/typewritertext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plant_disease_detection/ui/style/app_dimensions.dart';
@@ -16,8 +16,9 @@ class PlantDescView extends StatelessWidget {
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => PlantDescViewModel(),
         onViewModelReady: (model) async {
+          model.initTts();
           await model.loadClassifier();
-          model.analyzeImage(File(imagePath));
+          await model.analyzeImage(File(imagePath));
         },
         builder: (context, model, _) {
           return Scaffold(
@@ -34,10 +35,15 @@ class PlantDescView extends StatelessWidget {
                       scale: 3,
                     ),
                     Expanded(
-                        child: TextWidget(
-                      text: "Hello",
-                      color: Colors.white,
-                    ))
+                        child: TypeWriterText.builder(model.advice ?? '',
+                            duration: Duration(milliseconds: 50),
+                            builder: (context, value) {
+                      return TextWidget(
+                        text: value,
+                        color: Colors.white,
+                        textAlign: TextAlign.left,
+                      );
+                    }))
                   ]),
                   Positioned(
                     top: PDimensions.height(0.07, context),
