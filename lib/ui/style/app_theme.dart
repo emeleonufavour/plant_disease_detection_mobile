@@ -7,9 +7,9 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        hintColor: AppColor.blue,
+        hintColor: AppColor.green,
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: AppColor.blue, foregroundColor: Colors.white),
+            backgroundColor: AppColor.green, foregroundColor: Colors.white),
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             elevation: 0,

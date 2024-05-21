@@ -7,6 +7,7 @@ import 'app/app_setup.locator.dart';
 
 import 'app/app_setup.router.dart';
 import 'ui/views/home/home.dart';
+import 'ui/views/intro/intro_view.dart';
 import 'ui/views/splash/splash_screen.dart';
 
 Future<void> main() async {
@@ -33,9 +34,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      navigatorKey: StackedService.navigatorKey,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      home: const SplashScreen(),
+      // navigatorKey: StackedService.navigatorKey,
+      // onGenerateRoute: StackedRouter().onGenerateRoute,
+      home: IntroView(),
     );
   }
 }

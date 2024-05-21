@@ -39,3 +39,8 @@ flutter:
     - assets/svg/
     - assets/labels.txt
     - assets/model_unquant.tflite
+
+  fonts:
+    - family: EuclidCircularA
+      fonts:
+        - asset: assets/fonts/Euclid Circular A Regular.ttf

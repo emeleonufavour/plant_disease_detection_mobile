@@ -12,6 +12,7 @@ class PDLargeButton extends StatefulWidget {
       this.width,
       this.borderColor,
       this.textColor,
+      this.borderRadius,
       this.horizontalPadding,
       this.verticalPadding,
       this.icon,
@@ -26,6 +27,7 @@ class PDLargeButton extends StatefulWidget {
   final double? width;
   final Color? borderColor;
   final Color? textColor;
+  final BorderRadiusGeometry? borderRadius;
   final double? horizontalPadding;
   final double? verticalPadding;
   final IconData? icon;
@@ -83,7 +85,7 @@ class _LButtonState extends State<PDLargeButton>
             vertical: widget.verticalPadding ?? 14,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(32),
             color: widget.color,
             // border: Border.all(
             //   width: 2,

@@ -6,16 +6,19 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart';
-import 'package:plant_disease_detection/ui/views/home/home.dart' as _i3;
+import 'package:plant_disease_detection/ui/views/home/home.dart' as _i4;
+import 'package:plant_disease_detection/ui/views/intro/intro_view.dart' as _i3;
 import 'package:plant_disease_detection/ui/views/plant_disease_id/plant_disease_id.dart'
-    as _i4;
+    as _i5;
 import 'package:plant_disease_detection/ui/views/splash/splash_screen.dart'
     as _i2;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i5;
+import 'package:stacked_services/stacked_services.dart' as _i6;
 
 class Routes {
   static const splashScreen = '/';
+
+  static const introView = '/intro-view';
 
   static const homePage = '/home-page';
 
@@ -23,6 +26,7 @@ class Routes {
 
   static const all = <String>{
     splashScreen,
+    introView,
     homePage,
     plantRecogniser,
   };
@@ -35,12 +39,16 @@ class StackedRouter extends _i1.RouterBase {
       page: _i2.SplashScreen,
     ),
     _i1.RouteDef(
+      Routes.introView,
+      page: _i3.IntroView,
+    ),
+    _i1.RouteDef(
       Routes.homePage,
-      page: _i3.HomePage,
+      page: _i4.HomePage,
     ),
     _i1.RouteDef(
       Routes.plantRecogniser,
-      page: _i4.PlantRecogniser,
+      page: _i5.PlantRecogniser,
     ),
   ];
 
@@ -51,15 +59,21 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i3.HomePage: (data) {
+    _i3.IntroView: (data) {
       return _i1.buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const _i3.HomePage(),
+        builder: (context) => const _i3.IntroView(),
         settings: data,
       );
     },
-    _i4.PlantRecogniser: (data) {
+    _i4.HomePage: (data) {
       return _i1.buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const _i4.PlantRecogniser(),
+        builder: (context) => const _i4.HomePage(),
+        settings: data,
+      );
+    },
+    _i5.PlantRecogniser: (data) {
+      return _i1.buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const _i5.PlantRecogniser(),
         settings: data,
       );
     },
@@ -72,7 +86,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i5.NavigationService {
+extension NavigatorStateExtension on _i6.NavigationService {
   Future<dynamic> navigateToSplashScreen([
     int? routerId,
     bool preventDuplicates = true,
@@ -81,6 +95,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.splashScreen,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToIntroView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.introView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -123,6 +151,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.splashScreen,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithIntroView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.introView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

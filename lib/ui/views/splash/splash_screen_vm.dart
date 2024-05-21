@@ -8,8 +8,8 @@ class SplashScreenViewModel extends BaseViewModel {
   final _navService = locator<NavigationService>();
   void navigateToHome() async {
     Future.delayed(const Duration(seconds: 4), () {
-      // Navigate to the HomeView
-      _navService.navigateToHomePage();
+      // Navigate to the IntroView
+      _navService.navigateToIntroView();
     });
   }
 }
