@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_disease_detection/ui/style/app_assets.dart';
@@ -7,8 +6,6 @@ import 'package:plant_disease_detection/ui/style/app_colors.dart';
 import 'package:plant_disease_detection/ui/style/app_dimensions.dart';
 import 'package:plant_disease_detection/ui/views/phone_id/phone_id_vm.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../widget/inverted_circle.dart';
 import '../../widget/pd_text.dart';
 
 class PhoneIdentifyView extends StatefulWidget {
@@ -100,7 +97,7 @@ class _PhoneIdentifyViewState extends State<PhoneIdentifyView> {
                                 horizontal: PDimensions.width(0.1, context)),
                             child: GestureDetector(
                               onTap: () {
-                                model.switchCamera();
+                                model.onPickPhoto();
                               },
                               child: Align(
                                   alignment: Alignment.bottomLeft,

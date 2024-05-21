@@ -25,6 +25,7 @@ dependencies:
   stacked_services: ^1.5.0
   tflite_flutter: ^0.9.0
   tuple: ^2.0.2
+  typewritertext: ^3.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:plant_disease_detection/app/app_setup.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -11,6 +13,8 @@ import '../../../app/app_setup.locator.dart';
 class PhoneIdentifyViewModel extends BaseViewModel {
   CameraDescription? camera;
   CameraController? cameraController;
+  final picker = ImagePicker();
+  File? _selectedImageFile;
   Future<void>? initializeControllerFuture;
   final _navigationService = locator<NavigationService>();
   bool frontCamera = true;
@@ -60,5 +64,22 @@ class PhoneIdentifyViewModel extends BaseViewModel {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  void onPickPhoto() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile == null) {
+      return;
+    }
+
+    final imageFile = File(pickedFile.path);
+
+    _selectedImageFile = imageFile;
+
+    await _navigationService.navigateToPlantDescView(
+        imagePath: _selectedImageFile!.path);
+
+    // analyzeImage(imageFile);
   }
 }
