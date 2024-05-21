@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:plant_disease_detection/ui/style/app_colors.dart';
 import 'package:plant_disease_detection/ui/style/app_dimensions.dart';
 import 'package:plant_disease_detection/ui/views/intro/intro_vm.dart';
 import 'package:plant_disease_detection/ui/widget/pd_large_button.dart';
-import 'package:plant_disease_detection/ui/widget/pd_text.dart';
 import 'package:stacked/stacked.dart';
 
 class IntroView extends StatelessWidget {
@@ -14,6 +13,7 @@ class IntroView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => IntroViewModel(),
+        onViewModelReady: (model) => model.addIntroText(),
         builder: (context, model, _) {
           return SafeArea(
             child: Scaffold(
@@ -24,24 +24,25 @@ class IntroView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: PDimensions.height(0.3, context),
                         ),
-                        const TextWidget(
-                          text: 'Hey, There!👋',
-                          color: Colors.white,
-                          fontsize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        TextWidget(
-                          text:
-                              // ignore: lines_longer_than_80_chars
-                              'This Mobile application is able to identify plant diseases and read data from the Drone hardware.',
-                          color: Colors.grey.withOpacity(0.9),
-                          textAlign: TextAlign.center,
-                        ),
+                        ...model.animatedIntroText.map((Widget e) => (e)
+                            .animate()
+                            .slideY(
+                                begin: 5,
+                                duration: Duration(
+                                  milliseconds: 800 *
+                                      (model.animatedIntroText.indexOf(e) + 1),
+                                ),
+                                curve: Curves.easeOut)
+                            .fadeIn(
+                                begin: 0.1,
+                                delay: Duration(
+                                    milliseconds: 300 *
+                                        (model.animatedIntroText.indexOf(e) +
+                                            1))))
                       ],
                     ),
                     PDLargeButton(
