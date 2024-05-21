@@ -9,10 +9,12 @@ class ActionBox extends StatelessWidget {
   final Widget imageAsset;
   final String text;
   final Color? color;
+  final Color? borderColor;
   const ActionBox(
       {this.onTap,
       required this.imageAsset,
       required this.text,
+      this.borderColor,
       this.color,
       super.key});
 
@@ -25,9 +27,9 @@ class ActionBox extends StatelessWidget {
         child: Container(
           height: PDimensions.height(0.07, context),
           decoration: BoxDecoration(
-            color: color ?? Colors.lightBlue,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
+              color: color ?? Colors.lightBlue,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all(color: borderColor ?? Colors.blue)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

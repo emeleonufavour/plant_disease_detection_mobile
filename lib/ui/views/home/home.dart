@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:plant_disease_detection/ui/style/app_dimensions.dart';
 
 import 'package:stacked/stacked.dart';
 
@@ -24,10 +25,8 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //Into box
-                    const IntroBox(),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: PDimensions.height(0.05, context),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
@@ -35,6 +34,7 @@ class HomePage extends StatelessWidget {
                         text: 'What do you wish to do?😊',
                         fontWeight: FontWeight.bold,
                         fontsize: 18,
+                        color: Colors.white,
                       ),
                     ),
                     ActionBox(
@@ -42,13 +42,23 @@ class HomePage extends StatelessWidget {
                         model.snapPicture();
                         HapticFeedback.lightImpact();
                       },
+                      color: Colors.blue.withOpacity(0.1),
                       text: 'Identify with phone',
                       imageAsset: AppAssets.phoneSvg(context),
                     ),
                     ActionBox(
                       //onTap: () => model.snapPicture(),
                       text: 'Talk to drone',
-                      imageAsset: AppAssets.droneSvg(context),
+                      color: Colors.yellow.withOpacity(0.1),
+                      imageAsset: AppAssets.droneSvg(context, Colors.yellow),
+                      borderColor: Colors.yellow,
+                    ),
+                    ActionBox(
+                      //onTap: () => model.snapPicture(),
+                      text: 'Talk to Ella',
+                      color: Colors.yellow.withOpacity(0.1),
+                      imageAsset: AppAssets.droneSvg(context, Colors.yellow),
+                      borderColor: Colors.yellow,
                     ),
                   ],
                 ),

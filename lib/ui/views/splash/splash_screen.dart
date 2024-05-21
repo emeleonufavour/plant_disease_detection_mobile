@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_disease_detection/ui/style/app_dimensions.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../style/app_assets.dart';
@@ -22,6 +23,9 @@ class SplashScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AppAssets.plantAnimation(),
+                    SizedBox(
+                      height: PDimensions.height(0.1, context),
+                    ),
                     const TextWidget(
                       text: 'Easily identify your plant diseases.',
                       fontWeight: FontWeight.bold,

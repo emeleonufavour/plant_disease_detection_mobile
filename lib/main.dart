@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:plant_disease_detection/ui/style/app_theme.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import 'app/app_setup.locator.dart';
-
 import 'app/app_setup.router.dart';
-import 'ui/views/home/home.dart';
-import 'ui/views/intro/intro_view.dart';
-import 'ui/views/splash/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,15 +23,12 @@ class MyApp extends StatelessWidget {
       ],
     );
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      title: 'Ella',
+      theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      // navigatorKey: StackedService.navigatorKey,
-      // onGenerateRoute: StackedRouter().onGenerateRoute,
-      home: IntroView(),
+      navigatorKey: StackedService.navigatorKey,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      //home: IntroView(),
     );
   }
 }

@@ -49,6 +49,7 @@ class IntroView extends StatelessWidget {
                       label: "Get started",
                       color: AppColor.green,
                       borderRadius: BorderRadius.circular(15),
+                      fct: () => model.goToHome(),
                     )
                   ],
                 ),
